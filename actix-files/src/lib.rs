@@ -453,6 +453,8 @@ impl Service for FilesService {
             Err(e) => return self.handle_err(e, req, pl),
         };
 
+        log::debug!("full path: {}", path.display());
+
         if path.is_dir() {
             if let Some(ref redir_index) = self.index {
                 let path = path.join(redir_index);
